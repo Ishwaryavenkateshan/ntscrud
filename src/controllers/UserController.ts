@@ -1,53 +1,35 @@
 import { Request, Response } from 'express';
-import { UserService } from '../Service/UserService';
-import { UserModel } from '../models/userModels';
+import { UserService } from '../service/UserService';
 
-let userservice: UserService;
+let userService: UserService;
 
 export class UserController {
     constructor() {
-        userservice = new UserService();
+        userService = new UserService();
     }
 
-    async usercreate(req: Request, res: Response) {
-        const user: any = await userservice.usercreate(req.body);
+    async userCreate(req: Request, res: Response) {
+        const user: any = await userService.userCreate(req.body);
         res.status(200).send(user);
     }
         
-    async userread(req: Request, res: Response) {
-        const user: any = await userservice.userread(req.params.id);
-        console.log("get----->>>",user)
+    async userRead(req: Request, res: Response) {
+        const user: any = await userService.userRead(req.params.id);
         res.status(200).send(user);
     }
-    async userreadall(req: Request, res: Response) {
-        const user: any = await userservice.userreadall;
-        console.log("getall----->>>",user)
+    async userReadAll(req: Request, res: Response) {
+        const user: any = await userService.userReadAll;
         res.status(200).send(user);
     }
-    async userupdate(req: Request, res: Response) {
-        const user: any = await userservice.userupdate(req.params.id, req.body);
-        console.log("update----->>>",user)
+    async userUpdate(req: Request, res: Response) {
+        const user: any = await userService.userUpdate(req.params.id, req.body);
         res.status(200).send(user);
     }
-    async userdelete(req: Request, res: Response) {
-        const user: any = await userservice.userdelete(req.params.id);
-        console.log("delete----->>>",user)
+    async userDelete(req: Request, res: Response) {
+        const user: any = await userService.userDelete(req.params.id);
         res.status(200).send(user);
     }
 
 }
 
-// async updateuser(req:Request, res:Response) {
-//     const user: any = req.body;
-//     await userservice.updateuser(user);
-//     try {
-//         res.status(200).send({
-//             message: "Successfully updated",
-//              IsSuccess: true,
-//              result: ""
-//         });
-//       } catch (e) {
-//         res.status(404).send(e.message);
-//       }
-//   };
 

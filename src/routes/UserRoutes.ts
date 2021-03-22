@@ -1,18 +1,18 @@
 import express from 'express';
 import { UserController } from '../controllers/UserController';
 
-let usercontroller: UserController;
+let userController: UserController;
 
-export class userRouter {
+export class UserRouter {
     constructor() {
-        usercontroller = new UserController();
+        userController = new UserController();
     }
     userRouter(app: express.Application) {
-        app.post('/user', usercontroller.usercreate);
-        app.get('/get/:id',usercontroller.userread);
-        app.get('/user/get',usercontroller.userreadall);
-        app.put('/ud/:id',usercontroller.userupdate);
-        app.delete('/del/:id',usercontroller.userdelete);
+        app.post('/user', userController.userCreate);
+        app.get('/get/:id',userController.userRead);
+        app.get('/user/get',userController.userReadAll);
+        app.put('/ud/:id',userController.userUpdate);
+        app.delete('/del/:id',userController.userDelete);
     }
 }
 
